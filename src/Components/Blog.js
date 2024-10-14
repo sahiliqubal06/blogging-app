@@ -1,4 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
+import { db } from "../firebaseInit";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  setDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc
+} from "firebase/firestore";
 
 export default function Blog() {
   const [formData, setformData] = useState({ title: "", content: "" });
@@ -9,16 +20,54 @@ export default function Blog() {
     titleRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    // async function fetchData() {
+    //   const snapShot = await getDocs(collection(db, "blogs"));
+    //   const blogs = snapShot.docs.map((doc) => {
+    //     return {
+    //       id: doc.id,
+    //       ...doc.data(),
+    //     };
+    //   });
+    //   setBlogs(blogs);
+    // }
+    // fetchData();
+
+    const unsub = onSnapshot(collection(db, "blogs"), (snapShot) => {
+      const blogs = snapShot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setBlogs(blogs);
+    });
+  }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
     titleRef.current.focus();
 
-    setBlogs([{ title: formData.title, content: formData.content }, ...blogs]);
+    // setBlogs([{ title: formData.title, content: formData.content }, ...blogs]);
+
+    // Add a new document with a generated id.
+
+    const docRef = doc(collection(db, "blogs"));
+
+    await setDoc(docRef, {
+      title: formData.title,
+      content: formData.content,
+      createdOn: new Date(),
+    });
+
+    // console.log("Document written with ID: ", docRef.id);
     setformData({ title: "", content: "" });
   }
 
-  async function removeBlog(i) {
-    setBlogs(blogs.filter((blog, index) => index !== i));
+  async function removeBlog(id) {
+    // setBlogs(blogs.filter((blog, index) => index !== i));
+    const docRef = doc(db, "blogs", id);
+    await deleteDoc(docRef)
   }
 
   return (
@@ -67,7 +116,7 @@ export default function Blog() {
           <div className="blog-btn">
             <button
               onClick={() => {
-                removeBlog(i);
+                removeBlog(blog.id);
               }}
               className="btn remove"
             >
