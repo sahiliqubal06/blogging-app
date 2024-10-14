@@ -1,3 +1,7 @@
+body {
+background: rgba(226, 217, 171, 1.0);
+background: radial-gradient(at center, rgba(226, 217, 171, 1.0), rgba(60, 92, 104, 1.0));
+}
 .section {
   padding: 15px;
   padding-left: 15px;
@@ -14,7 +18,7 @@
 
 .blog {
   max-width: 60%;
-  background-color: rgb(31, 207, 204);
+  background-color: rgb(37, 163, 121);
   color: black;
   font-weight: lighter;
   border: 1px black solid;
@@ -76,14 +80,12 @@ h1 {
 .remove {
   background-color: rgb(230, 83, 83);
   width: fit-content;
+
 }
 
 .blog-btn {
   text-align: end;
   margin-right: 10px;
+  padding-bottom: 5px;
 }
-/* Created with https://www.css-gradient.com */
-/* background: #565318;
-background: -webkit-linear-gradient(right, #565318, #3C464E);
-background: -moz-linear-gradient(right, #565318, #3C464E);
-background: linear-gradient(to left, #565318, #3C464E); */
+
