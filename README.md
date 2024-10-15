@@ -1,5 +1,3 @@
----
-
 # Blogging App
 
 A simple blogging application built with **React** and **Firebase** to create, edit, and delete blog posts. This project uses React for the frontend and Firebase for backend services such as authentication and Firestore.
@@ -35,7 +33,7 @@ Make sure you have the following tools installed:
 ### Steps
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/blogging-app.git
+   git clone https://github.com/sahiliqubal06/blogging-app.git
    cd blogging-app
    ```
 
@@ -142,5 +140,3 @@ This project is licensed under the MIT License.
 - [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
 
 ---
-
-This **`README.md`** provides a detailed overview of the project, installation steps, and usage instructions. Feel free to customize it as needed!
